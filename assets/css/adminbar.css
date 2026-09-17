@@ -1,0 +1,23 @@
+/**
+ * Cloudflare admin bar menu.
+ *
+ * Only state colours - everything else inherits the admin bar's own styling so
+ * the menu is indistinguishable from the ones Nginx Helper and Redis add.
+ *
+ * @package PageBuilderCacheControl
+ */
+
+#wpadminbar .pbcc-adminbar__purge a.is-working,
+#wpadminbar .pbcc-adminbar__preview a.is-working {
+	opacity: 0.7;
+}
+
+#wpadminbar .pbcc-adminbar__purge a.is-done,
+#wpadminbar .pbcc-adminbar__preview a.is-done {
+	color: #68de7c !important;
+}
+
+#wpadminbar .pbcc-adminbar__purge a.is-failed,
+#wpadminbar .pbcc-adminbar__preview a.is-failed {
+	color: #ff8085 !important;
+}
