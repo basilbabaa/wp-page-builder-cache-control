@@ -3,3 +3,9 @@
 dist/
 node_modules/
 vendor/
+
+# Local AI-assistant notes, never published
+CLAUDE.md
+CLAUDE.local.md
+AGENTS.md
+.claude/
