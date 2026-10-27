@@ -15,6 +15,7 @@ use PageBuilderCacheControl\Bypass\Manager;
 use PageBuilderCacheControl\Cloudflare\AutoPurge;
 use PageBuilderCacheControl\Rest\Controller;
 use PageBuilderCacheControl\Surfaces\BricksSurface;
+use PageBuilderCacheControl\Surfaces\EtchSurface;
 use PageBuilderCacheControl\Surfaces\Surface;
 use PageBuilderCacheControl\Updates\Updater;
 
@@ -58,7 +59,7 @@ final class Plugin {
 	}
 
 	/**
-	 * Builder surfaces. Etch joins this list later; it needs no provider changes.
+	 * Builder surfaces. A new builder needs no provider changes.
 	 *
 	 * @return Surface[]
 	 */
@@ -68,7 +69,7 @@ final class Plugin {
 		 *
 		 * @param Surface[] $surfaces Registered surfaces.
 		 */
-		$surfaces = apply_filters( 'pbcc/surfaces', array( new BricksSurface() ) );
+		$surfaces = apply_filters( 'pbcc/surfaces', array( new BricksSurface(), new EtchSurface() ) );
 
 		return array_values(
 			array_filter(

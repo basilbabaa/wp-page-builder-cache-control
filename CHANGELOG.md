@@ -4,6 +4,16 @@ All notable changes to this project are documented here.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.10.0] — 2026-10-27
+
+### Added
+- **Etch support.** A new `EtchSurface` puts the same purge controls in Etch's
+  builder (the `?etch=magic` app, Etch 1.7+). The buttons sit at the top of the
+  left settings rail's bottom section. They borrow a sibling button's class list
+  at run time, so they track Etch's styling, and a light observer re-mounts them
+  if the Svelte UI rebuilds the rail. Same providers, REST routes, capability
+  check and uncached-preview link as Bricks.
+
 ## [0.9.0] — 2026-09-17
 
 First public release.

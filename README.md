@@ -2,7 +2,7 @@
 
 Cache purge controls inside page builders that hide the WordPress admin bar.
 
-Bricks takes over the full viewport and suppresses the admin bar, so the purge
+Bricks and Etch take over the full viewport and suppress the admin bar, so the purge
 menus contributed by caching plugins are unreachable without leaving the
 builder. This plugin puts equivalent controls into the builder's own toolbar,
 and optionally consolidates the scattered cache menus in the admin bar into one.
@@ -270,6 +270,23 @@ add_action( 'pbcc/purged', function ( string $id, array $result ): void {
 > When diagnosing a broken mount, read the rendered DOM, not the minified
 > bundle. Bricks 2.4 composes toolbar classes dynamically, so grepping the
 > source for a literal class string reports it as missing when it is present.
+
+## Etch integration notes
+
+- Etch's builder is a Svelte app mounted into `#etch-builder` on a front-end
+  request with `?etch=magic`, for users who can manage options. The surface is
+  active exactly then; the page being edited renders in the app's own iframe from
+  script, so there is no second PHP pass to exclude.
+- Mount point is `.settings-bar__section.bottom`, the left rail's bottom group
+  (settings, the AI connector, exit to WordPress). The controls go at the top of
+  that group. Etch hashes its component classes (`svelte-…`), so the script reads
+  a sibling `button.etch-builder-button`'s class list at run time instead of
+  hard-coding any hash.
+- Etch can rebuild the rail, so a light `MutationObserver` (one `querySelector`
+  per animation frame) re-mounts the controls if they disappear.
+- Tooltips use the native `title` attribute. Feedback (busy / success / error) is
+  the same self-contained CSS as Bricks and uses `currentColor`.
+- Tested against Etch 1.7.1 with the Etch theme 0.0.7.
 
 ## Development
 

@@ -1,0 +1,83 @@
+/**
+ * Cache control buttons inside the Etch builder's left settings rail.
+ *
+ * The buttons borrow Etch's own button classes (set at run time), so size and
+ * hover come from the builder. This only lays out the three glyph states and the
+ * feedback colours, and uses currentColor so light/dark follows the builder.
+ *
+ * @package PageBuilderCacheControl
+ */
+
+.settings-bar .pbcc-control {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.settings-bar .pbcc-control .pbcc-control__icon {
+	display: none;
+	line-height: 0;
+}
+
+.settings-bar .pbcc-control .pbcc-control__icon svg {
+	display: block;
+	width: 16px;
+	height: 16px;
+}
+
+/* Default: provider icon only. */
+.settings-bar .pbcc-control .pbcc-control__icon--default {
+	display: block;
+}
+
+/* Busy: gentle pulse, no spinner swap, so the icon never jumps. */
+.settings-bar .pbcc-control.is-busy .pbcc-control__icon--default {
+	animation: pbcc-pulse 0.9s ease-in-out infinite;
+}
+
+/* Success and error replace the glyph outright and tint the button. */
+.settings-bar .pbcc-control.is-success .pbcc-control__icon--default,
+.settings-bar .pbcc-control.is-error .pbcc-control__icon--default {
+	display: none;
+}
+
+.settings-bar .pbcc-control.is-success .pbcc-control__icon--success,
+.settings-bar .pbcc-control.is-error .pbcc-control__icon--error {
+	display: block;
+	animation: pbcc-pop 0.25s ease-out;
+}
+
+.settings-bar .pbcc-control.is-success {
+	color: #22c55e;
+}
+
+.settings-bar .pbcc-control.is-error {
+	color: #ef4444;
+}
+
+@keyframes pbcc-pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.35;
+	}
+}
+
+@keyframes pbcc-pop {
+	from {
+		transform: scale( 0.6 );
+		opacity: 0;
+	}
+	to {
+		transform: scale( 1 );
+		opacity: 1;
+	}
+}
+
+@media ( prefers-reduced-motion: reduce ) {
+	.settings-bar .pbcc-control * {
+		animation: none !important;
+	}
+}
