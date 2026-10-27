@@ -24,6 +24,31 @@ final class ActivityLog {
 	public function register(): void {
 		add_action( 'pbcc/purged', array( $this, 'manual' ), 10, 2 );
 		add_action( 'pbcc/cloudflare/auto_purged', array( $this, 'automatic' ), 10, 2 );
+		add_filter( 'aal_init_roles', array( $this, 'allow_cache_type' ) );
+	}
+
+	/**
+	 * Activity Log only lists entries whose type is on a per-capability allow-list
+	 * (aal_init_roles), so an entry with an unknown type is stored but never shown.
+	 * Put our type on the list for administrators.
+	 *
+	 * @param array<string,string[]> $roles Capability => allowed object types.
+	 * @return array<string,string[]>
+	 */
+	public function allow_cache_type( $roles ) {
+		if ( ! is_array( $roles ) ) {
+			return $roles;
+		}
+
+		if ( ! isset( $roles['manage_options'] ) || ! is_array( $roles['manage_options'] ) ) {
+			$roles['manage_options'] = array();
+		}
+
+		if ( ! in_array( 'Cache', $roles['manage_options'], true ) ) {
+			$roles['manage_options'][] = 'Cache';
+		}
+
+		return $roles;
 	}
 
 	/**

@@ -4,6 +4,14 @@ All notable changes to this project are documented here.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.1] — 2026-10-27
+
+### Fixed
+- **Purge entries were stored but never shown in the Activity Log screen.** Activity Log
+  lists only entries whose type is on a per-capability allow-list (its `aal_init_roles`
+  filter), and `Cache` was not on it. The plugin now adds `Cache` to the list for users
+  who can manage options. Entries recorded by 0.11.0 appear once 0.11.1 is installed.
+
 ## [0.11.0] — 2026-10-27
 
 ### Added
