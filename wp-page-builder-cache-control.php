@@ -4,7 +4,7 @@
  * Plugin URI:        https://github.com/basilbabaa/wp-page-builder-cache-control
  * Update URI:        https://github.com/basilbabaa/wp-page-builder-cache-control
  * Description:       Adds cache purge controls directly into page builder interfaces (Bricks and Etch) that otherwise hide the WordPress admin bar. Provider-based, so cache backends and builder surfaces can be added independently.
- * Version:           0.10.0
+ * Version:           0.11.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            Basil Babaa
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PBCC_VERSION', '0.10.0' );
+define( 'PBCC_VERSION', '0.11.0' );
 define( 'PBCC_FILE', __FILE__ );
 define( 'PBCC_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PBCC_URL', plugin_dir_url( __FILE__ ) );

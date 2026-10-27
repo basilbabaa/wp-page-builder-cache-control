@@ -10,6 +10,7 @@ declare( strict_types=1 );
 namespace PageBuilderCacheControl;
 
 use PageBuilderCacheControl\Admin\AdminBarMenu;
+use PageBuilderCacheControl\Activity\ActivityLog;
 use PageBuilderCacheControl\Admin\SettingsPage;
 use PageBuilderCacheControl\Bypass\Manager;
 use PageBuilderCacheControl\Cloudflare\AutoPurge;
@@ -50,6 +51,7 @@ final class Plugin {
 		( new Manager() )->register();
 		( new AutoPurge() )->register();
 		( new Updater() )->register();
+		( new ActivityLog() )->register();
 		( new SettingsPage() )->register();
 		( new AdminBarMenu() )->register();
 

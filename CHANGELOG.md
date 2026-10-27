@@ -4,6 +4,16 @@ All notable changes to this project are documented here.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.11.0] — 2026-10-27
+
+### Added
+- **Purges are recorded in the Activity Log plugin** (when it is active). Each button
+  press writes an entry with the cache, the user, the time and the outcome, and an
+  automatic Cloudflare purge after a post save is recorded with its URL count. A host's
+  own dashboard never hears about purges that run inside WordPress, so this leaves an
+  audit trail instead. Does nothing when Activity Log is not installed. Disable with
+  `add_filter( 'pbcc/log_purges', '__return_false' )`.
+
 ## [0.10.0] — 2026-10-27
 
 ### Added

@@ -271,6 +271,14 @@ add_action( 'pbcc/purged', function ( string $id, array $result ): void {
 > bundle. Bricks 2.4 composes toolbar classes dynamically, so grepping the
 > source for a literal class string reports it as missing when it is present.
 
+## Activity Log
+
+If the Activity Log plugin is active, every purge (button, admin bar menu, and the
+automatic Cloudflare purge on save) is recorded as an entry of type **Cache** with
+the provider, the user, the time and the result message. Purges run inside
+WordPress, so a host's own dashboard never reports them; this is the audit trail.
+Turn it off with `add_filter( 'pbcc/log_purges', '__return_false' );`.
+
 ## Etch integration notes
 
 - Etch's builder is a Svelte app mounted into `#etch-builder` on a front-end
